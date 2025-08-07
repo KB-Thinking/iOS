@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
+    @State private var currentIndex: Int = 0
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -29,34 +30,19 @@ struct HomeView: View {
                         
                         PromotionBannerView()
                         
-                        if let account = viewModel.accounts.first {
-                            AccountCardView(account: account)
-                        }
-
-                        // 4. 페이지 인디케이터 및 자산 연결 알림
-                        HStack {
-                            Image(systemName: "chevron.left")
-                            Text("1 / 4")
-                                .font(.subheadline)
-                            Image(systemName: "chevron.right")
-                            Spacer()
-                            
-                            Button {
-                                // Action
-                                
-                            } label: {
-                                Text("전체계좌 보기")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(Color(UIColor.darkGray))
-                                    .padding(.vertical, 6)
-                                    .padding(.horizontal, 14)
-                                    .overlay(
-                                        Capsule()
-                                            .stroke(Color(UIColor.systemGray4), lineWidth: 1)
-                                    )
+                        TabView(selection: $currentIndex) {
+                            ForEach(Array(viewModel.accounts.enumerated()), id: \.1.id) { index, account in
+                                AccountCardView(account: account)
+                                    .frame(width: UIScreen.main.bounds.width - 40)
+                                    .tag(index)
                             }
                         }
-                        .padding(.horizontal)
+                        .tabViewStyle(.page)
+                        .indexViewStyle(.page(backgroundDisplayMode: .never))
+                        .frame(height: 250)
+                        
+                        AccountIndicator(currentIndex: $currentIndex, viewModel: viewModel)
+                            .padding(.horizontal)
                         
                         LinkAlertView
                             .padding(.horizontal)
@@ -87,28 +73,28 @@ private struct PromotionBannerView: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-
+                
                 Spacer()
-
+                
                 Image("PromotionBanner")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 60, height: 60)
             }
             .padding(.horizontal)
-
+            
             HStack(spacing: 4) {
                 Spacer()
                 RoundedRectangle(cornerRadius: 3)
                     .frame(width: 20, height: 4)
                     .foregroundColor(.gray)
-
+                
                 ForEach(0..<4) { _ in
                     Circle()
                         .frame(width: 4, height: 4)
                         .foregroundColor(.gray.opacity(0.5))
                 }
-
+                
                 Image(systemName: "chevron.right")
                     .font(.system(size: 12))
                     .foregroundColor(.gray)
@@ -121,6 +107,36 @@ private struct PromotionBannerView: View {
                 .fill(Color.gray.opacity(0.1))
         )
         .padding(.horizontal)
+    }
+}
+
+// MARK: - AccountIndicator : 커스텀 인디케이터 + 전체계좌 보기
+private struct AccountIndicator: View {
+    @Binding var currentIndex: Int
+    var viewModel: HomeViewModel
+    var body: some View {
+        HStack {
+            Image(systemName: "chevron.left")
+              
+            Text("\(currentIndex + 1) / \(viewModel.accounts.count)")
+                .font(.subheadline)
+            
+            Image(systemName: "chevron.right")
+            
+            Spacer()
+            
+            Button("전체계좌 보기") {
+                // 액션
+            }
+            .font(.system(size: 14, weight: .medium))
+            .foregroundColor(Color(UIColor.darkGray))
+            .padding(.vertical, 6)
+            .padding(.horizontal, 14)
+            .overlay(
+                Capsule()
+                    .stroke(Color(UIColor.systemGray4), lineWidth: 1)
+            )
+        }
     }
 }
 
@@ -213,41 +229,41 @@ private var SpendingCardView: some View {
 
 
 struct HomeView_Previews: PreviewProvider {
-
+    
     // MARK: - 1. Mock Repository
     static var mockRepository: AccountRepository {
         MockAccountRepositoryImpl()
     }
-
+    
     // MARK: - 2. UseCase
     static var useCase: AccountsUseCase {
         AccountsUseCase(repository: mockRepository)
     }
-
+    
     // MARK: - 3. 다양한 상태별 ViewModel
-
+    
     static var normalVM: HomeViewModel = {
         let vm = HomeViewModel(fetchAccountsUseCase: useCase)
         vm.accounts = AccountEntity.mockList
         return vm
     }()
-
+    
     static var emptyVM: HomeViewModel = {
         let vm = HomeViewModel(fetchAccountsUseCase: useCase)
         vm.accounts = []
         return vm
     }()
-
-
+    
+    
     // MARK: - 4. Preview
     static var previews: some View {
         Group {
             HomeView(viewModel: normalVM)
                 .previewDisplayName("정상 데이터")
-     
+            
             HomeView(viewModel: emptyVM)
                 .previewDisplayName("비어있는 상태")
-
+            
         }
     }
 }

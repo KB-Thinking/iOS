@@ -79,7 +79,6 @@ struct AccountCardView: View {
         .background(Color(UIColor.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 2)
-        .padding(.horizontal)
     }
 }
 
@@ -121,4 +120,5 @@ private struct UserAvatarScrollView: View {
 
 #Preview {
     AccountCardView(account: AccountEntity.mockList[0])
+        .padding(.horizontal, 10)
 }
