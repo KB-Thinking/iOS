@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AccountCardView: View {
+    let account: AccountEntity
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading) {
@@ -20,15 +22,15 @@ struct AccountCardView: View {
                     
                     VStack(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text("정정욱저축")
+                            Text(account.name)
                                 .font(.headline)
-                            Text("937702-00-876440")
+                            Text(account.number)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .padding(.bottom, 20)
                             
                             HStack {
-                                Text("309,877원")
+                                Text("\(account.balance)")
                                     .font(.title2)
                                     .bold()
                                 Button {
@@ -71,7 +73,7 @@ struct AccountCardView: View {
                 }
             }
             
-            UserAvatarScrollView()
+            UserAvatarScrollView(users: account.holders)
         }
         .padding()
         .background(Color(UIColor.systemBackground))
@@ -94,12 +96,7 @@ private struct VerticalEllipsisButton: View {
 }
 
 private struct UserAvatarScrollView: View {
-    let users: [User] = [
-        User(name: "정정욱", image: "KBLogo"),
-        User(name: "윤재남", image: "KBLogo"),
-        User(name: "양봉섭", image: "KBLogo"),
-        User(name: "유재석", image: "KBLogo")
-    ]
+    let users: [AccountHolderEntity]
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -122,12 +119,6 @@ private struct UserAvatarScrollView: View {
     }
 }
 
-struct User: Identifiable {
-    let id = UUID()
-    let name: String
-    let image: String // Assets에 등록된 이미지 이름
-}
-
 #Preview {
-    AccountCardView()
+    AccountCardView(account: AccountEntity.mockList[0])
 }

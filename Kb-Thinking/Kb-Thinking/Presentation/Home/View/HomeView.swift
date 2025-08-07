@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var viewModel: HomeViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             // 1. 전체 배경: 위에서 아래로 흰색 → 라이트 그레이
@@ -27,7 +29,9 @@ struct HomeView: View {
                         
                         PromotionBannerView()
                         
-                        AccountCardView()
+                        if let account = viewModel.accounts.first {
+                            AccountCardView(account: account)
+                        }
 
                         // 4. 페이지 인디케이터 및 자산 연결 알림
                         HStack {
@@ -207,6 +211,43 @@ private var SpendingCardView: some View {
     .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
 }
 
-#Preview {
-    HomeView()
+
+struct HomeView_Previews: PreviewProvider {
+
+    // MARK: - 1. Mock Repository
+    static var mockRepository: AccountRepository {
+        MockAccountRepositoryImpl()
+    }
+
+    // MARK: - 2. UseCase
+    static var useCase: AccountsUseCase {
+        AccountsUseCase(repository: mockRepository)
+    }
+
+    // MARK: - 3. 다양한 상태별 ViewModel
+
+    static var normalVM: HomeViewModel = {
+        let vm = HomeViewModel(fetchAccountsUseCase: useCase)
+        vm.accounts = AccountEntity.mockList
+        return vm
+    }()
+
+    static var emptyVM: HomeViewModel = {
+        let vm = HomeViewModel(fetchAccountsUseCase: useCase)
+        vm.accounts = []
+        return vm
+    }()
+
+
+    // MARK: - 4. Preview
+    static var previews: some View {
+        Group {
+            HomeView(viewModel: normalVM)
+                .previewDisplayName("정상 데이터")
+     
+            HomeView(viewModel: emptyVM)
+                .previewDisplayName("비어있는 상태")
+
+        }
+    }
 }

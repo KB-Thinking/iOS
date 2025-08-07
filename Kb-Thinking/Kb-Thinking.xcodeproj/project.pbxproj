@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04E49EAD2E447CA900400559 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EAC2E447CA900400559 /* TopBar.swift */; };
+		04E49EBB2E44881A00400559 /* AccountCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EB62E44881A00400559 /* AccountCardView.swift */; };
+		04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EB72E44881A00400559 /* BottomTabView.swift */; };
+		04E49EBD2E44881A00400559 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EB82E44881A00400559 /* HomeView.swift */; };
+		04E49EBE2E44881A00400559 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EB92E44881A00400559 /* TopBar.swift */; };
+		04E49ED32E4489C400400559 /* AccountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49ED22E4489C400400559 /* AccountEntity.swift */; };
+		04E49ED52E448A9000400559 /* AccountDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49ED42E448A9000400559 /* AccountDTO.swift */; };
+		04E49ED72E448C7700400559 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49ED62E448C7700400559 /* AccountRepository.swift */; };
+		04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49ED82E448CC800400559 /* AccountRepositoryImpl.swift */; };
+		04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDA2E448DC000400559 /* AccountsUseCase.swift */; };
+		04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDC2E448DF000400559 /* HomeViewModel.swift */; };
+		04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EE12E448FE000400559 /* HomeMocks.swift */; };
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
 		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
 		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
 		04F40D392E437D5200DBB309 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* ContentView.swift */; };
 		04F40D3E2E437D7500DBB309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F40D3B2E437D7500DBB309 /* Assets.xcassets */; };
-		04F40D422E437E4900DBB309 /* AccountCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D412E437E4900DBB309 /* AccountCardView.swift */; };
-		04F40D442E437E5A00DBB309 /* BottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D432E437E5A00DBB309 /* BottomTabView.swift */; };
-		04F40D482E437FBF00DBB309 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D462E437FBF00DBB309 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04E49EAC2E447CA900400559 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		04E49EB62E44881A00400559 /* AccountCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCardView.swift; sourceTree = "<group>"; };
+		04E49EB72E44881A00400559 /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
+		04E49EB82E44881A00400559 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		04E49EB92E44881A00400559 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		04E49ED22E4489C400400559 /* AccountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEntity.swift; sourceTree = "<group>"; };
+		04E49ED42E448A9000400559 /* AccountDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDTO.swift; sourceTree = "<group>"; };
+		04E49ED62E448C7700400559 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		04E49ED82E448CC800400559 /* AccountRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepositoryImpl.swift; sourceTree = "<group>"; };
+		04E49EDA2E448DC000400559 /* AccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsUseCase.swift; sourceTree = "<group>"; };
+		04E49EDC2E448DF000400559 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		04E49EE12E448FE000400559 /* HomeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMocks.swift; sourceTree = "<group>"; };
 		04F40CE72E42557100DBB309 /* Kb-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kb-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CF52E42557200DBB309 /* Kb-ThinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CFF2E42557300DBB309 /* Kb-ThinkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,9 +63,6 @@
 		04F40D372E437D5200DBB309 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04F40D3B2E437D7500DBB309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F40D3C2E437D7500DBB309 /* Kb_Thinking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kb_Thinking.entitlements; sourceTree = "<group>"; };
-		04F40D412E437E4900DBB309 /* AccountCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCardView.swift; sourceTree = "<group>"; };
-		04F40D432E437E5A00DBB309 /* BottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabView.swift; sourceTree = "<group>"; };
-		04F40D462E437FBF00DBB309 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -89,6 +103,100 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E49EBA2E44881A00400559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EB62E44881A00400559 /* AccountCardView.swift */,
+				04E49EB72E44881A00400559 /* BottomTabView.swift */,
+				04E49EB82E44881A00400559 /* HomeView.swift */,
+				04E49EB92E44881A00400559 /* TopBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E49EC02E44883700400559 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EDC2E448DF000400559 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04E49EC32E4488B400400559 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				04E49ED22E4489C400400559 /* AccountEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		04E49EC42E4488B400400559 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EC72E4488CB00400559 /* UseCase */,
+				04E49EC82E4488CE00400559 /* Repository */,
+				04E49EC32E4488B400400559 /* Entity */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04E49EC72E4488CB00400559 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EDA2E448DC000400559 /* AccountsUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		04E49EC82E4488CE00400559 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				04E49ED62E448C7700400559 /* AccountRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		04E49EC92E4488E300400559 /* Mocks & Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EE22E448FE000400559 /* Home */,
+			);
+			path = "Mocks & Stubs";
+			sourceTree = "<group>";
+		};
+		04E49ECF2E44892D00400559 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				04E49ED42E448A9000400559 /* AccountDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		04E49ED02E44892D00400559 /* RepositoryImpl */ = {
+			isa = PBXGroup;
+			children = (
+				04E49ED82E448CC800400559 /* AccountRepositoryImpl.swift */,
+			);
+			path = RepositoryImpl;
+			sourceTree = "<group>";
+		};
+		04E49ED12E44892D00400559 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04E49ECF2E44892D00400559 /* DTO */,
+				04E49ED02E44892D00400559 /* RepositoryImpl */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04E49EE22E448FE000400559 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EE12E448FE000400559 /* HomeMocks.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		04F40CDE2E42557100DBB309 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +220,7 @@
 		04F40D152E42566B00DBB309 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				04E49ED12E44892D00400559 /* Home */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -119,6 +228,7 @@
 		04F40D162E42566B00DBB309 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				04E49EC42E4488B400400559 /* Home */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -143,6 +253,7 @@
 				04F40D162E42566B00DBB309 /* Domain */,
 				04F40D172E42566B00DBB309 /* Presentation */,
 				04F40D3D2E437D7500DBB309 /* Resources */,
+				04E49EC92E4488E300400559 /* Mocks & Stubs */,
 			);
 			path = "Kb-Thinking";
 			sourceTree = "<group>";
@@ -166,10 +277,8 @@
 		04F40D472E437FBF00DBB309 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				04F40D462E437FBF00DBB309 /* HomeView.swift */,
-				04E49EAC2E447CA900400559 /* TopBar.swift */,
-				04F40D412E437E4900DBB309 /* AccountCardView.swift */,
-				04F40D432E437E5A00DBB309 /* BottomTabView.swift */,
+				04E49EC02E44883700400559 /* ViewModel */,
+				04E49EBA2E44881A00400559 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -317,13 +426,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */,
-				04F40D482E437FBF00DBB309 /* HomeView.swift in Sources */,
 				04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */,
-				04F40D442E437E5A00DBB309 /* BottomTabView.swift in Sources */,
+				04E49EBB2E44881A00400559 /* AccountCardView.swift in Sources */,
+				04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */,
+				04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */,
+				04E49EBD2E44881A00400559 /* HomeView.swift in Sources */,
+				04E49EBE2E44881A00400559 /* TopBar.swift in Sources */,
 				04F40D392E437D5200DBB309 /* ContentView.swift in Sources */,
-				04F40D422E437E4900DBB309 /* AccountCardView.swift in Sources */,
 				04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */,
-				04E49EAD2E447CA900400559 /* TopBar.swift in Sources */,
+				04E49ED32E4489C400400559 /* AccountEntity.swift in Sources */,
+				04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */,
+				04E49ED52E448A9000400559 /* AccountDTO.swift in Sources */,
+				04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */,
+				04E49ED72E448C7700400559 /* AccountRepository.swift in Sources */,
+				04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
