@@ -28,6 +28,10 @@ final class VoiceConversationViewModel: ObservableObject {
     init(sendLLMMessageUseCase: SendLLMMessageUseCase) {
         self.sendLLMMessageUseCase = sendLLMMessageUseCase
         
+        recognizer.requestAuthorization { status in
+            print("권한 상태: \(status)")
+        }
+
         // Combine 바인딩
         recognizer.$recognizedText
             .receive(on: DispatchQueue.main)
@@ -39,12 +43,11 @@ final class VoiceConversationViewModel: ObservableObject {
     func startListening() {
         voiceState = .userSpeaking
         transcribedText = ""
-        
+
         do {
             try recognizer.startRecording()
         } catch {
-            transcribedText = "음성 인식 시작 실패: \(error.localizedDescription)"
-            voiceState = .idle
+            print("🎤 음성 인식 시작 실패:", error.localizedDescription)
         }
     }
     
@@ -72,8 +75,6 @@ final class VoiceConversationViewModel: ObservableObject {
     // MARK: - 목업 응답
     func stopListeningAndRespondWithMock() async {
         recognizer.stopRecording()
-        
-        let userText = transcribedText
         voiceState = .aiSpeaking
         
         // 목업 응답 사용
