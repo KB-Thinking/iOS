@@ -9,53 +9,21 @@ import Foundation
 
 enum Endpoint {
     
-    // MARK: - Main
+    // MARK: - LLMConversation
     
-    enum Main {
-        case getMain
+    enum LLMConversation {
+        case postVoice(userId: String)
         
         var path: String {
             switch self {
-            case .getMain:
-                return "/api/v1/main"
+            case .postVoice(let userId):
+                return "/api/chat/\(userId)"
             }
         }
         
         var method: HTTPMethod {
             switch self {
-            case .getMain:
-                return .GET
-            }
-        }
-    }
-    
-    // MARK: - Club
-    
-    enum Club {
-        case getMyClubs
-        case getClubDetail(clubId: String)
-        case postClubChat(clubId: String)
-        
-        var path: String {
-            switch self {
-            case .getMyClubs:
-                return "/api/v1/club"
-                
-            case .getClubDetail(let clubId):
-                return "/api/v1/club/\(clubId)"
-                
-            case .postClubChat(let clubId):
-                return "/api/v1/club/\(clubId)/chat"
-                
-            }
-        }
-        
-        var method: HTTPMethod {
-            switch self {
-            case .getMyClubs,
-                    .getClubDetail:
-                return .GET
-            case .postClubChat:
+            case .postVoice:
                 return .POST
             }
         }
