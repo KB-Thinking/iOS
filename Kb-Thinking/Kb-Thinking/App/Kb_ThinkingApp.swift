@@ -11,7 +11,7 @@ import SwiftUI
 struct Kb_ThinkingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VoiceConversationView()
         }
     }
 }

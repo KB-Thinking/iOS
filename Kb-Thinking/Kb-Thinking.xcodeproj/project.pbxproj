@@ -21,7 +21,7 @@
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
 		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
 		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
-		04F40D392E437D5200DBB309 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* ContentView.swift */; };
+		04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* VoiceConversationView.swift */; };
 		04F40D3E2E437D7500DBB309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F40D3B2E437D7500DBB309 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +60,7 @@
 		04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kb_ThinkingApp.swift; sourceTree = "<group>"; };
 		04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
 		04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
-		04F40D372E437D5200DBB309 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		04F40D372E437D5200DBB309 /* VoiceConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConversationView.swift; sourceTree = "<group>"; };
 		04F40D3B2E437D7500DBB309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F40D3C2E437D7500DBB309 /* Kb_Thinking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kb_Thinking.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +197,37 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		04E49EF92E45C37A00400559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04F40D372E437D5200DBB309 /* VoiceConversationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E49EFA2E45C37A00400559 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04E49EFB2E45C37A00400559 /* LLM Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EFA2E45C37A00400559 /* ViewModel */,
+				04E49EF92E45C37A00400559 /* View */,
+			);
+			path = "LLM Conversation";
+			sourceTree = "<group>";
+		};
+		04E49EFD2E45CAED00400559 /* LLM Conversation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "LLM Conversation";
+			sourceTree = "<group>";
+		};
 		04F40CDE2E42557100DBB309 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +251,7 @@
 		04F40D152E42566B00DBB309 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				04E49EFD2E45CAED00400559 /* LLM Conversation */,
 				04E49ED12E44892D00400559 /* Home */,
 			);
 			path = Data;
@@ -236,8 +268,8 @@
 		04F40D172E42566B00DBB309 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				04E49EFB2E45C37A00400559 /* LLM Conversation */,
 				04F40D472E437FBF00DBB309 /* Home */,
-				04F40D372E437D5200DBB309 /* ContentView.swift */,
 				04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */,
 				04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */,
 			);
@@ -432,7 +464,7 @@
 				04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */,
 				04E49EBD2E44881A00400559 /* HomeView.swift in Sources */,
 				04E49EBE2E44881A00400559 /* TopBar.swift in Sources */,
-				04F40D392E437D5200DBB309 /* ContentView.swift in Sources */,
+				04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */,
 				04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */,
 				04E49ED32E4489C400400559 /* AccountEntity.swift in Sources */,
 				04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */,
