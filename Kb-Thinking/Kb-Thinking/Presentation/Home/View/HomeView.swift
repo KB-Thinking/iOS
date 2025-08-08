@@ -10,10 +10,11 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     @State private var currentIndex: Int = 0
-    
+    @State private var isVoiceSheetPresented: Bool = false
+
     var body: some View {
         ZStack(alignment: .top) {
-            // 1. 전체 배경: 위에서 아래로 흰색 → 라이트 그레이
+            // 1. 배경 그라데이션
             LinearGradient(
                 gradient: Gradient(colors: [Color.white, Color(UIColor.systemGray6)]),
                 startPoint: .top,
@@ -55,6 +56,31 @@ struct HomeView: View {
                 }
                 BottomTabView()
             }
+
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        isVoiceSheetPresented = true
+                    }) {
+                        Image(systemName: "mic.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.yellow)
+                            .clipShape(Circle())
+                            .shadow(radius: 4)
+                    }
+                    .padding(.bottom, 80)
+                    .padding(.trailing, 24)
+                }
+            }
+        }
+        .sheet(isPresented: $isVoiceSheetPresented) {
+            VoiceConversationView(viewModel: VoiceConversationViewModel(
+                sendLLMMessageUseCase: SendLLMMessageUseCase(repository: MockLLMConversationRepositoryImpl())
+            ))
         }
     }
 }
