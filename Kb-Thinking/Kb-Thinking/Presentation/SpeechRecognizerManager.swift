@@ -10,14 +10,14 @@ import SwiftUI
 import Speech
 import AVFoundation
 
-class SpeechRecognizerManager: ObservableObject {
+final class SpeechRecognizerManager: ObservableObject {
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
     private let audioEngine = AVAudioEngine()
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
 
     @Published var recognizedText: String = ""
-
+    
     func requestAuthorization(completion: @escaping (Bool) -> Void) {
         SFSpeechRecognizer.requestAuthorization { status in
             DispatchQueue.main.async {
@@ -27,7 +27,6 @@ class SpeechRecognizerManager: ObservableObject {
     }
 
     func startRecording() throws {
-        // 이미 실행 중이면 리턴
         if audioEngine.isRunning { return }
 
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -39,19 +38,21 @@ class SpeechRecognizerManager: ObservableObject {
 
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.removeTap(onBus: 0) // 중복 방지
+        inputNode.removeTap(onBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {
             buffer, _ in
             recognitionRequest.append(buffer)
         }
 
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            guard let self = self else { return }
+            
             if let result = result {
-                self?.recognizedText = result.bestTranscription.formattedString
+                self.recognizedText = result.bestTranscription.formattedString
             }
-
+            
             if error != nil || (result?.isFinal ?? false) {
-                self?.stopRecording()
+                self.stopRecording()
             }
         }
 
@@ -67,13 +68,5 @@ class SpeechRecognizerManager: ObservableObject {
 
         recognitionRequest = nil
         recognitionTask = nil
-    }
-
-    func toggleRecording() {
-        if audioEngine.isRunning {
-            stopRecording()
-        } else {
-            try? startRecording()
-        }
     }
 }

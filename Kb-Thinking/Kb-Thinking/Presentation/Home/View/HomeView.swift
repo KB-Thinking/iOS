@@ -230,17 +230,12 @@ private var SpendingCardView: some View {
 
 struct HomeView_Previews: PreviewProvider {
     
-    // MARK: - 1. Mock Repository
-    static var mockRepository: AccountRepository {
-        MockAccountRepositoryImpl()
-    }
-    
-    // MARK: - 2. UseCase
+    // MARK: - 1. UseCase
     static var useCase: AccountsUseCase {
-        AccountsUseCase(repository: mockRepository)
+        AccountsUseCase(repository:  MockAccountRepositoryImpl())
     }
     
-    // MARK: - 3. 다양한 상태별 ViewModel
+    // MARK: - 2. 다양한 상태별 ViewModel
     
     static var normalVM: HomeViewModel = {
         let vm = HomeViewModel(fetchAccountsUseCase: useCase)
@@ -255,7 +250,7 @@ struct HomeView_Previews: PreviewProvider {
     }()
     
     
-    // MARK: - 4. Preview
+    // MARK: - 3. Preview
     static var previews: some View {
         Group {
             HomeView(viewModel: normalVM)

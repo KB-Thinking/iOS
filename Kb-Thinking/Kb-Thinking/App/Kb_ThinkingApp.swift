@@ -11,7 +11,12 @@ import SwiftUI
 struct Kb_ThinkingApp: App {
     var body: some Scene {
         WindowGroup {
-            VoiceConversationView()
+            let apiService = LLMConversationAPIService()
+            let repository = LLMConversationRepositoryImpl(apiService: apiService)
+            let useCase = SendLLMMessageUseCase(repository: repository)
+            let viewModel = VoiceConversationViewModel(sendLLMMessageUseCase: useCase)
+
+            VoiceConversationView(viewModel: viewModel)
         }
     }
 }

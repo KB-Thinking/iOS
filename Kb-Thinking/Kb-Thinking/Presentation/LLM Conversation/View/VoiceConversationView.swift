@@ -14,12 +14,11 @@ enum VoiceState {
 }
 
 struct VoiceConversationView: View {
-    @State private var voiceState: VoiceState = .userSpeaking
+    @StateObject var viewModel: VoiceConversationViewModel
     @State private var animate = false
-    @State private var transcribedText = "말씀하시면 여기에 텍스트가 표시됩니다"
     
     var animationDuration: Double {
-        switch voiceState {
+        switch viewModel.voiceState {
         case .idle: return 2.0
         case .userSpeaking: return 0.9
         case .aiSpeaking: return 1.2
@@ -61,7 +60,8 @@ struct VoiceConversationView: View {
             // MARK: - 각 버튼들
             HStack(spacing: 32) {
                 Button {
-                    voiceState = .userSpeaking
+                    viewModel.voiceState = .userSpeaking
+                    viewModel.startListening()
                 } label: {
                     Image(systemName: "mic.fill")
                         .foregroundColor(.black)
@@ -71,7 +71,10 @@ struct VoiceConversationView: View {
                 }
                 
                 Button {
-                    voiceState = .aiSpeaking
+                    Task {
+                        viewModel.voiceState = .aiSpeaking
+                        await viewModel.stopListeningAndRespondWithMock()
+                    }
                 } label: {
                     Image(systemName: "waveform")
                         .foregroundColor(.black)
@@ -81,7 +84,8 @@ struct VoiceConversationView: View {
                 }
                 
                 Button {
-                    voiceState = .idle
+                    viewModel.voiceState = .idle
+                    viewModel.stopSpeaking()
                 } label: {
                     Image(systemName: "xmark")
                         .foregroundColor(.black)
@@ -93,7 +97,7 @@ struct VoiceConversationView: View {
             .padding(.bottom, 16)
             
             // 텍스트 출력
-            Text(transcribedText)
+            Text(viewModel.transcribedText)
                 .font(.callout)
                 .foregroundColor(.gray)
                 .padding(.horizontal)
@@ -104,7 +108,29 @@ struct VoiceConversationView: View {
     }
 }
 
+struct VoiceConversationView_Previews: PreviewProvider {
+    
+    // MARK: - 1. UseCase
+    
+    static var mockUseCase: SendLLMMessageUseCase {
+        SendLLMMessageUseCase(repository: MockLLMConversationRepositoryImpl())
+    }
 
-#Preview {
-    VoiceConversationView()
+    // MARK: - 2. ViewModel
+    
+    static var mockViewModel: VoiceConversationViewModel = {
+        let vm = VoiceConversationViewModel(sendLLMMessageUseCase: mockUseCase)
+        vm.transcribedText = LLMMessageEntity.mockList[2].requestText
+        vm.voiceState = .aiSpeaking
+        return vm
+    }()
+    
+    // MARK: - 3. Preview
+    
+    static var previews: some View {
+        Group {
+            VoiceConversationView(viewModel: mockViewModel)
+                .previewDisplayName("🎙️ 음성 대화 - Mock 응답")
+        }
+    }
 }
