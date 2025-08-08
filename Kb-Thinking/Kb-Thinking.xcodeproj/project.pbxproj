@@ -18,6 +18,11 @@
 		04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDA2E448DC000400559 /* AccountsUseCase.swift */; };
 		04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDC2E448DF000400559 /* HomeViewModel.swift */; };
 		04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EE12E448FE000400559 /* HomeMocks.swift */; };
+		04E49F192E45CF8900400559 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F182E45CF8900400559 /* APIService.swift */; };
+		04E49F1B2E45CF9D00400559 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1A2E45CF9D00400559 /* Endpoint.swift */; };
+		04E49F1D2E45CFAC00400559 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */; };
+		04E49F1F2E45CFB800400559 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1E2E45CFB800400559 /* NetworkError.swift */; };
+		04E49F4F2E45D2E200400559 /* AccountAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F4E2E45D2E200400559 /* AccountAPIService.swift */; };
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
 		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
 		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
@@ -54,6 +59,11 @@
 		04E49EDA2E448DC000400559 /* AccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsUseCase.swift; sourceTree = "<group>"; };
 		04E49EDC2E448DF000400559 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		04E49EE12E448FE000400559 /* HomeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMocks.swift; sourceTree = "<group>"; };
+		04E49F182E45CF8900400559 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		04E49F1A2E45CF9D00400559 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		04E49F1E2E45CFB800400559 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		04E49F4E2E45D2E200400559 /* AccountAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPIService.swift; sourceTree = "<group>"; };
 		04F40CE72E42557100DBB309 /* Kb-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kb-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CF52E42557200DBB309 /* Kb-ThinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CFF2E42557300DBB309 /* Kb-ThinkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,12 +174,12 @@
 			path = "Mocks & Stubs";
 			sourceTree = "<group>";
 		};
-		04E49ECF2E44892D00400559 /* DTO */ = {
+		04E49ECF2E44892D00400559 /* ResponseDTO */ = {
 			isa = PBXGroup;
 			children = (
 				04E49ED42E448A9000400559 /* AccountDTO.swift */,
 			);
-			path = DTO;
+			path = ResponseDTO;
 			sourceTree = "<group>";
 		};
 		04E49ED02E44892D00400559 /* RepositoryImpl */ = {
@@ -183,7 +193,7 @@
 		04E49ED12E44892D00400559 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				04E49ECF2E44892D00400559 /* DTO */,
+				04E49ECF2E44892D00400559 /* ResponseDTO */,
 				04E49ED02E44892D00400559 /* RepositoryImpl */,
 			);
 			path = Home;
@@ -228,6 +238,34 @@
 			path = "LLM Conversation";
 			sourceTree = "<group>";
 		};
+		04E49F162E45CF5E00400559 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F182E45CF8900400559 /* APIService.swift */,
+				04E49F1A2E45CF9D00400559 /* Endpoint.swift */,
+				04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */,
+				04E49F1E2E45CFB800400559 /* NetworkError.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		04E49F172E45CF5E00400559 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F372E45D25000400559 /* Services */,
+				04E49F162E45CF5E00400559 /* Core */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		04E49F372E45D25000400559 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F4E2E45D2E200400559 /* AccountAPIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		04F40CDE2E42557100DBB309 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +289,7 @@
 		04F40D152E42566B00DBB309 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				04E49F172E45CF5E00400559 /* NetWork */,
 				04E49EFD2E45CAED00400559 /* LLM Conversation */,
 				04E49ED12E44892D00400559 /* Home */,
 			);
@@ -463,6 +502,8 @@
 				04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */,
 				04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */,
 				04E49EBD2E44881A00400559 /* HomeView.swift in Sources */,
+				04E49F4F2E45D2E200400559 /* AccountAPIService.swift in Sources */,
+				04E49F192E45CF8900400559 /* APIService.swift in Sources */,
 				04E49EBE2E44881A00400559 /* TopBar.swift in Sources */,
 				04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */,
 				04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */,
@@ -470,8 +511,11 @@
 				04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */,
 				04E49ED52E448A9000400559 /* AccountDTO.swift in Sources */,
 				04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */,
+				04E49F1D2E45CFAC00400559 /* HTTPMethod.swift in Sources */,
 				04E49ED72E448C7700400559 /* AccountRepository.swift in Sources */,
+				04E49F1B2E45CF9D00400559 /* Endpoint.swift in Sources */,
 				04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */,
+				04E49F1F2E45CFB800400559 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
