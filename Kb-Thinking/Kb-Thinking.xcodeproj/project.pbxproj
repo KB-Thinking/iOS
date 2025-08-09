@@ -32,6 +32,8 @@
 		04E49F832E45DC4F00400559 /* LLMConversationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F822E45DC4F00400559 /* LLMConversationAPIService.swift */; };
 		04E49F9B2E45E0C700400559 /* LLMMessageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F9A2E45E0C700400559 /* LLMMessageMocks.swift */; };
 		04E49F9D2E45E36700400559 /* VoiceConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F9C2E45E36700400559 /* VoiceConversationViewModel.swift */; };
+		04E4A0A92E4763EF00400559 /* TransferLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A0A62E4763EF00400559 /* TransferLimitView.swift */; };
+		04E4A10E2E47652400400559 /* KBTopNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A10C2E47652400400559 /* KBTopNavBar.swift */; };
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
 		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
 		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
@@ -82,6 +84,8 @@
 		04E49F822E45DC4F00400559 /* LLMConversationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationAPIService.swift; sourceTree = "<group>"; };
 		04E49F9A2E45E0C700400559 /* LLMMessageMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMMessageMocks.swift; sourceTree = "<group>"; };
 		04E49F9C2E45E36700400559 /* VoiceConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConversationViewModel.swift; sourceTree = "<group>"; };
+		04E4A0A62E4763EF00400559 /* TransferLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferLimitView.swift; sourceTree = "<group>"; };
+		04E4A10C2E47652400400559 /* KBTopNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KBTopNavBar.swift; sourceTree = "<group>"; };
 		04F40CE72E42557100DBB309 /* Kb-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kb-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CF52E42557200DBB309 /* Kb-ThinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CFF2E42557300DBB309 /* Kb-ThinkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +352,30 @@
 			path = RepositoryImpl;
 			sourceTree = "<group>";
 		};
+		04E4A0A72E4763EF00400559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04E4A0A62E4763EF00400559 /* TransferLimitView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E4A0A82E4763EF00400559 /* TransferLimit */ = {
+			isa = PBXGroup;
+			children = (
+				04E4A0A72E4763EF00400559 /* View */,
+			);
+			path = TransferLimit;
+			sourceTree = "<group>";
+		};
+		04E4A10D2E47652400400559 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				04E4A10C2E47652400400559 /* KBTopNavBar.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		04F40CDE2E42557100DBB309 = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +418,8 @@
 		04F40D172E42566B00DBB309 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				04E4A10D2E47652400400559 /* Common */,
+				04E4A0A82E4763EF00400559 /* TransferLimit */,
 				04E49EFB2E45C37A00400559 /* LLM Conversation */,
 				04F40D472E437FBF00DBB309 /* Home */,
 				04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */,
@@ -587,6 +617,7 @@
 				04E49EBB2E44881A00400559 /* AccountCardView.swift in Sources */,
 				04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */,
 				04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */,
+				04E4A10E2E47652400400559 /* KBTopNavBar.swift in Sources */,
 				04E49EBD2E44881A00400559 /* HomeView.swift in Sources */,
 				04E49F4F2E45D2E200400559 /* AccountAPIService.swift in Sources */,
 				04E49F192E45CF8900400559 /* APIService.swift in Sources */,
@@ -608,6 +639,7 @@
 				04E49F9D2E45E36700400559 /* VoiceConversationViewModel.swift in Sources */,
 				04E49F1F2E45CFB800400559 /* NetworkError.swift in Sources */,
 				04E49F9B2E45E0C700400559 /* LLMMessageMocks.swift in Sources */,
+				04E4A0A92E4763EF00400559 /* TransferLimitView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
