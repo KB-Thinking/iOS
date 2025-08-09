@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-// MARK: - 메인 뷰
 struct TransferLimitView: View {
-    // 샘플 값
     let dayLimit = "1,000,000원"
     let onceLimit = "1,000,000원"
     let todaySum = "0원"
@@ -51,8 +49,7 @@ struct TransferLimitView: View {
                         }
                         
                         Divider()
-                        
-                        // 안내 카드
+       
                         InfoCard()
                             .padding(.horizontal, 10)
                         
@@ -82,7 +79,7 @@ struct TransferLimitView: View {
                 .shadow(radius: 1, y: 1)
             }
         }
-        .ignoresSafeArea(edges: .bottom) // 아래 살짝 파고들도록
+        .ignoresSafeArea(edges: .bottom) 
     }
 }
 
@@ -155,7 +152,6 @@ struct InfoCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
-
 
 #Preview {
     TransferLimitView()
