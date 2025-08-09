@@ -18,10 +18,24 @@
 		04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDA2E448DC000400559 /* AccountsUseCase.swift */; };
 		04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EDC2E448DF000400559 /* HomeViewModel.swift */; };
 		04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49EE12E448FE000400559 /* HomeMocks.swift */; };
+		04E49F192E45CF8900400559 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F182E45CF8900400559 /* APIService.swift */; };
+		04E49F1B2E45CF9D00400559 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1A2E45CF9D00400559 /* Endpoint.swift */; };
+		04E49F1D2E45CFAC00400559 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */; };
+		04E49F1F2E45CFB800400559 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F1E2E45CFB800400559 /* NetworkError.swift */; };
+		04E49F4F2E45D2E200400559 /* AccountAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F4E2E45D2E200400559 /* AccountAPIService.swift */; };
+		04E49F6B2E45D84500400559 /* LLMConversationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F692E45D84500400559 /* LLMConversationRequestDTO.swift */; };
+		04E49F6F2E45D94500400559 /* LLMConversationResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F6E2E45D94500400559 /* LLMConversationResponseDTO.swift */; };
+		04E49F792E45DB4200400559 /* LLMMessageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F782E45DB4200400559 /* LLMMessageEntity.swift */; };
+		04E49F7B2E45DB8200400559 /* LLMConversationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F7A2E45DB8200400559 /* LLMConversationRepository.swift */; };
+		04E49F7D2E45DBBD00400559 /* LLMMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F7C2E45DBBD00400559 /* LLMMessageUseCase.swift */; };
+		04E49F812E45DC0200400559 /* LLMConversationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F802E45DC0200400559 /* LLMConversationRepositoryImpl.swift */; };
+		04E49F832E45DC4F00400559 /* LLMConversationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F822E45DC4F00400559 /* LLMConversationAPIService.swift */; };
+		04E49F9B2E45E0C700400559 /* LLMMessageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F9A2E45E0C700400559 /* LLMMessageMocks.swift */; };
+		04E49F9D2E45E36700400559 /* VoiceConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E49F9C2E45E36700400559 /* VoiceConversationViewModel.swift */; };
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
 		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
 		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
-		04F40D392E437D5200DBB309 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* ContentView.swift */; };
+		04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* VoiceConversationView.swift */; };
 		04F40D3E2E437D7500DBB309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F40D3B2E437D7500DBB309 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -54,13 +68,27 @@
 		04E49EDA2E448DC000400559 /* AccountsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsUseCase.swift; sourceTree = "<group>"; };
 		04E49EDC2E448DF000400559 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		04E49EE12E448FE000400559 /* HomeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMocks.swift; sourceTree = "<group>"; };
+		04E49F182E45CF8900400559 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		04E49F1A2E45CF9D00400559 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		04E49F1E2E45CFB800400559 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		04E49F4E2E45D2E200400559 /* AccountAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountAPIService.swift; sourceTree = "<group>"; };
+		04E49F692E45D84500400559 /* LLMConversationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationRequestDTO.swift; sourceTree = "<group>"; };
+		04E49F6E2E45D94500400559 /* LLMConversationResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationResponseDTO.swift; sourceTree = "<group>"; };
+		04E49F782E45DB4200400559 /* LLMMessageEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMMessageEntity.swift; sourceTree = "<group>"; };
+		04E49F7A2E45DB8200400559 /* LLMConversationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationRepository.swift; sourceTree = "<group>"; };
+		04E49F7C2E45DBBD00400559 /* LLMMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMMessageUseCase.swift; sourceTree = "<group>"; };
+		04E49F802E45DC0200400559 /* LLMConversationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationRepositoryImpl.swift; sourceTree = "<group>"; };
+		04E49F822E45DC4F00400559 /* LLMConversationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMConversationAPIService.swift; sourceTree = "<group>"; };
+		04E49F9A2E45E0C700400559 /* LLMMessageMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMMessageMocks.swift; sourceTree = "<group>"; };
+		04E49F9C2E45E36700400559 /* VoiceConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConversationViewModel.swift; sourceTree = "<group>"; };
 		04F40CE72E42557100DBB309 /* Kb-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kb-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CF52E42557200DBB309 /* Kb-ThinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CFF2E42557300DBB309 /* Kb-ThinkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kb_ThinkingApp.swift; sourceTree = "<group>"; };
 		04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
 		04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
-		04F40D372E437D5200DBB309 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		04F40D372E437D5200DBB309 /* VoiceConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConversationView.swift; sourceTree = "<group>"; };
 		04F40D3B2E437D7500DBB309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F40D3C2E437D7500DBB309 /* Kb_Thinking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kb_Thinking.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,12 +192,12 @@
 			path = "Mocks & Stubs";
 			sourceTree = "<group>";
 		};
-		04E49ECF2E44892D00400559 /* DTO */ = {
+		04E49ECF2E44892D00400559 /* ResponseDTO */ = {
 			isa = PBXGroup;
 			children = (
 				04E49ED42E448A9000400559 /* AccountDTO.swift */,
 			);
-			path = DTO;
+			path = ResponseDTO;
 			sourceTree = "<group>";
 		};
 		04E49ED02E44892D00400559 /* RepositoryImpl */ = {
@@ -183,7 +211,7 @@
 		04E49ED12E44892D00400559 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				04E49ECF2E44892D00400559 /* DTO */,
+				04E49ECF2E44892D00400559 /* ResponseDTO */,
 				04E49ED02E44892D00400559 /* RepositoryImpl */,
 			);
 			path = Home;
@@ -193,8 +221,131 @@
 			isa = PBXGroup;
 			children = (
 				04E49EE12E448FE000400559 /* HomeMocks.swift */,
+				04E49F9A2E45E0C700400559 /* LLMMessageMocks.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		04E49EF92E45C37A00400559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04F40D372E437D5200DBB309 /* VoiceConversationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E49EFA2E45C37A00400559 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F9C2E45E36700400559 /* VoiceConversationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04E49EFB2E45C37A00400559 /* LLM Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				04E49EFA2E45C37A00400559 /* ViewModel */,
+				04E49EF92E45C37A00400559 /* View */,
+			);
+			path = "LLM Conversation";
+			sourceTree = "<group>";
+		};
+		04E49EFD2E45CAED00400559 /* LLM Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F6D2E45D94000400559 /* ResponseDTO */,
+				04E49F6A2E45D84500400559 /* RequestDTO */,
+				04E49F7F2E45DBF700400559 /* RepositoryImpl */,
+			);
+			path = "LLM Conversation";
+			sourceTree = "<group>";
+		};
+		04E49F162E45CF5E00400559 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F182E45CF8900400559 /* APIService.swift */,
+				04E49F1A2E45CF9D00400559 /* Endpoint.swift */,
+				04E49F1C2E45CFAC00400559 /* HTTPMethod.swift */,
+				04E49F1E2E45CFB800400559 /* NetworkError.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		04E49F172E45CF5E00400559 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F372E45D25000400559 /* Services */,
+				04E49F162E45CF5E00400559 /* Core */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		04E49F372E45D25000400559 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F4E2E45D2E200400559 /* AccountAPIService.swift */,
+				04E49F822E45DC4F00400559 /* LLMConversationAPIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		04E49F6A2E45D84500400559 /* RequestDTO */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F692E45D84500400559 /* LLMConversationRequestDTO.swift */,
+			);
+			path = RequestDTO;
+			sourceTree = "<group>";
+		};
+		04E49F6D2E45D94000400559 /* ResponseDTO */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F6E2E45D94500400559 /* LLMConversationResponseDTO.swift */,
+			);
+			path = ResponseDTO;
+			sourceTree = "<group>";
+		};
+		04E49F712E45D98300400559 /* LLM Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F762E45D9A500400559 /* UseCase */,
+				04E49F772E45D9A900400559 /* Repository */,
+				04E49F752E45D9A100400559 /* Entity */,
+			);
+			path = "LLM Conversation";
+			sourceTree = "<group>";
+		};
+		04E49F752E45D9A100400559 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F782E45DB4200400559 /* LLMMessageEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		04E49F762E45D9A500400559 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F7C2E45DBBD00400559 /* LLMMessageUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		04E49F772E45D9A900400559 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F7A2E45DB8200400559 /* LLMConversationRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		04E49F7F2E45DBF700400559 /* RepositoryImpl */ = {
+			isa = PBXGroup;
+			children = (
+				04E49F802E45DC0200400559 /* LLMConversationRepositoryImpl.swift */,
+			);
+			path = RepositoryImpl;
 			sourceTree = "<group>";
 		};
 		04F40CDE2E42557100DBB309 = {
@@ -220,6 +371,8 @@
 		04F40D152E42566B00DBB309 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				04E49F172E45CF5E00400559 /* NetWork */,
+				04E49EFD2E45CAED00400559 /* LLM Conversation */,
 				04E49ED12E44892D00400559 /* Home */,
 			);
 			path = Data;
@@ -228,6 +381,7 @@
 		04F40D162E42566B00DBB309 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				04E49F712E45D98300400559 /* LLM Conversation */,
 				04E49EC42E4488B400400559 /* Home */,
 			);
 			path = Domain;
@@ -236,8 +390,8 @@
 		04F40D172E42566B00DBB309 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				04E49EFB2E45C37A00400559 /* LLM Conversation */,
 				04F40D472E437FBF00DBB309 /* Home */,
-				04F40D372E437D5200DBB309 /* ContentView.swift */,
 				04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */,
 				04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */,
 			);
@@ -425,21 +579,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E49F6B2E45D84500400559 /* LLMConversationRequestDTO.swift in Sources */,
 				04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */,
+				04E49F812E45DC0200400559 /* LLMConversationRepositoryImpl.swift in Sources */,
+				04E49F6F2E45D94500400559 /* LLMConversationResponseDTO.swift in Sources */,
 				04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */,
 				04E49EBB2E44881A00400559 /* AccountCardView.swift in Sources */,
 				04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */,
 				04E49EBC2E44881A00400559 /* BottomTabView.swift in Sources */,
 				04E49EBD2E44881A00400559 /* HomeView.swift in Sources */,
+				04E49F4F2E45D2E200400559 /* AccountAPIService.swift in Sources */,
+				04E49F192E45CF8900400559 /* APIService.swift in Sources */,
 				04E49EBE2E44881A00400559 /* TopBar.swift in Sources */,
-				04F40D392E437D5200DBB309 /* ContentView.swift in Sources */,
+				04E49F792E45DB4200400559 /* LLMMessageEntity.swift in Sources */,
+				04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */,
 				04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */,
 				04E49ED32E4489C400400559 /* AccountEntity.swift in Sources */,
 				04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */,
 				04E49ED52E448A9000400559 /* AccountDTO.swift in Sources */,
+				04E49F832E45DC4F00400559 /* LLMConversationAPIService.swift in Sources */,
+				04E49F7D2E45DBBD00400559 /* LLMMessageUseCase.swift in Sources */,
 				04E49EDB2E448DC000400559 /* AccountsUseCase.swift in Sources */,
+				04E49F7B2E45DB8200400559 /* LLMConversationRepository.swift in Sources */,
+				04E49F1D2E45CFAC00400559 /* HTTPMethod.swift in Sources */,
 				04E49ED72E448C7700400559 /* AccountRepository.swift in Sources */,
+				04E49F1B2E45CF9D00400559 /* Endpoint.swift in Sources */,
 				04E49EDD2E448DF000400559 /* HomeViewModel.swift in Sources */,
+				04E49F9D2E45E36700400559 /* VoiceConversationViewModel.swift in Sources */,
+				04E49F1F2E45CFB800400559 /* NetworkError.swift in Sources */,
+				04E49F9B2E45E0C700400559 /* LLMMessageMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +769,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "KB 띵킹";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 접근이 필요합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용합니다.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -642,6 +811,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "KB 띵킹";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 접근이 필요합니다.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식을 사용합니다.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

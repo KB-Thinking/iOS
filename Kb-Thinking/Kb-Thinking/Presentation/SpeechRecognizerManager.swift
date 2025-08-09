@@ -10,14 +10,15 @@ import SwiftUI
 import Speech
 import AVFoundation
 
-class SpeechRecognizerManager: ObservableObject {
+final class SpeechRecognizerManager: ObservableObject {
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
     private let audioEngine = AVAudioEngine()
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
-
+    
     @Published var recognizedText: String = ""
-
+    
+    /// 음성 인식 권한 요청
     func requestAuthorization(completion: @escaping (Bool) -> Void) {
         SFSpeechRecognizer.requestAuthorization { status in
             DispatchQueue.main.async {
@@ -26,39 +27,52 @@ class SpeechRecognizerManager: ObservableObject {
         }
     }
 
+    /// 음성 인식 시작
     func startRecording() throws {
-        // 이미 실행 중이면 리턴
-        if audioEngine.isRunning { return }
+        if audioEngine.isRunning {
+            return
+        }
 
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else { return }
-
+        // 1. 오디오 세션 설정
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
 
+        // 2. 요청 및 입력 초기화
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let recognitionRequest = recognitionRequest else { return }
+
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.removeTap(onBus: 0) // 중복 방지
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {
-            buffer, _ in
+        inputNode.removeTap(onBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
             recognitionRequest.append(buffer)
         }
 
+        // 3. 인식 작업 시작
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            guard let self = self else { return }
+
             if let result = result {
-                self?.recognizedText = result.bestTranscription.formattedString
+                let text = result.bestTranscription.formattedString
+                print("🎤 인식된 텍스트:", text)
+
+                DispatchQueue.main.async {
+                    self.recognizedText = text
+                }
             }
 
-            if error != nil || (result?.isFinal ?? false) {
-                self?.stopRecording()
+            if error != nil || result?.isFinal == true {
+                self.stopRecording()
             }
         }
 
+        // 4. 오디오 엔진 시작
         audioEngine.prepare()
         try audioEngine.start()
     }
 
+    /// 음성 인식 중지
     func stopRecording() {
         audioEngine.stop()
         recognitionRequest?.endAudio()
@@ -68,12 +82,5 @@ class SpeechRecognizerManager: ObservableObject {
         recognitionRequest = nil
         recognitionTask = nil
     }
-
-    func toggleRecording() {
-        if audioEngine.isRunning {
-            stopRecording()
-        } else {
-            try? startRecording()
-        }
-    }
 }
+
