@@ -9,5 +9,6 @@ import Foundation
 
 public enum Route: String, Decodable {
     case limit = "LIMIT"
-    // 서버와 합의된 값 추가
+    case fund = "FUND"
+    case alert = "ALERT"
 }

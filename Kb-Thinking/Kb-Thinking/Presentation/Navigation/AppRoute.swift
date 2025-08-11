@@ -10,5 +10,6 @@ import Foundation
 // MARK: - NavigationStack이 push/pop할 때 쓰는 앱 내부 라우팅 타입.
 enum AppRoute: Hashable {
     case limit
-    // case fundDetail(id: String) 등 확장
+    case fund
+    case alert
 }

@@ -14,6 +14,8 @@ struct RouteAdapter {
     static func map(_ domain: Route) -> AppRoute? {
         switch domain {
         case .limit: return .limit
+        case .fund: return .fund
+        case .alert: return .alert
         }
     }
 }

@@ -95,19 +95,21 @@ struct HomeView: View {
                 case .limit:
                     TransferLimitView()
                         .navigationBarBackButtonHidden(true)
+                case .fund:
+                    FundDetailView()
+                        .navigationBarBackButtonHidden(true)
+                case .alert:
+                    Text("다른 액션 필요")
                 }
             }
             .sheet(isPresented: $isVoiceSheetPresented) {
                 VoiceConversationView(viewModel: voiceVM)
                     .onAppear {
                         voiceVM.onRoute = { appRoute in
-                            // appRoute: AppRoute?  → nil 이면 이동 안 함
                             guard let appRoute else { return }
-                            
-                            // 1) 시트 닫기
                             isVoiceSheetPresented = false
                             
-                            // 2) 닫힘 애니메이션 직후 push (경합 방지 살짝 딜레이)
+                            // 닫힘 애니메이션 직후 push (경합 방지 살짝 딜레이)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                                 coordinator.navigate(to: appRoute)                            }
                         }
