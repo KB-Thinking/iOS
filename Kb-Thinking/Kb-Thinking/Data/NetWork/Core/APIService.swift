@@ -12,7 +12,6 @@ final class APIService {
     private init() {}
 
     private let baseURL: String = Bundle.main.infoDictionary?["BASE_URL"] as? String ?? ""
-
     func request<T: Decodable>(
         path: String,
         method: HTTPMethod,

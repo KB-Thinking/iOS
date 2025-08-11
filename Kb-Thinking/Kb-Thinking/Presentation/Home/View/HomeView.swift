@@ -19,7 +19,7 @@ struct HomeView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         
         let useCase = SendLLMMessageUseCase(
-            repository: MockLLMConversationRepositoryImpl()
+            repository: LLMConversationRepositoryImpl()
         )
         _voiceVM = StateObject(wrappedValue: VoiceConversationViewModel(sendLLMMessageUseCase: useCase))
     }
