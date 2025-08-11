@@ -225,7 +225,6 @@ struct VoiceConversationView_Previews: PreviewProvider {
         let vm = VoiceConversationViewModel(sendLLMMessageUseCase: mockUseCase)
         vm.transcribedText = "안녕하세요, KB국민은행에 대해 궁금한 점이 있습니다"
         vm.voiceState = .idle
-        vm.isAuthorized = true
         return vm
     }()
     
@@ -233,7 +232,7 @@ struct VoiceConversationView_Previews: PreviewProvider {
         let vm = VoiceConversationViewModel(sendLLMMessageUseCase: mockUseCase)
         vm.transcribedText = "출금 한도는 얼마인가요?"
         vm.llmResponse = "현재 출금 한도는 100만원까지 설정되어 있어요. 한도를 넘기려면 신분증 인증과 추가 서류 제출이 필요할 수 있어요."
-        vm.voiceState = .idle
+        vm.voiceState = .aiSpeaking
         return vm
     }()
     
@@ -250,7 +249,11 @@ struct VoiceConversationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VoiceConversationView(viewModel: mockViewModel)
-                .previewDisplayName("🎙️ 음성 대화 - Mock 응답")
+                .previewDisplayName("🎙️ 음성 대화 - 기본상태")
+            VoiceConversationView(viewModel: mockViewModelWithResponse)
+                .previewDisplayName("🎙️ 음성 대화 - AI 응답")
+            VoiceConversationView(viewModel: mockViewModelRecording)
+                .previewDisplayName("🎙️ 음성 대화 - 사용자 말하기")
         }
     }
 }

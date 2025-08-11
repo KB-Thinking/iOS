@@ -70,11 +70,16 @@ final class VoiceConversationViewModel: ObservableObject {
     }
     
     private func requestPermissions() {
-        // 프리뷰 모드가 아닐 때만 권한 요청
-        recognizer.requestAuthorization { [weak self] authorized in
-            print("🎙️ STT 권한 상태:", authorized)
+        // 프리뷰/스냅샷에서는 바로 authorized 처리
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            self.isAuthorized = true
+            return
+        }
+        recognizer.requestAuthorization { [weak self] ok in
+            self?.isAuthorized = ok
         }
     }
+
 
     // MARK: - Public API (View에서 호출)
 
