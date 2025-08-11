@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct LLMMessageEntity {
+public struct LLMMessageEntity {
     let requestText: String
     let responseText: String
+    let route: Route?
 }
