@@ -9,79 +9,112 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
+    @StateObject private var coordinator = AppCoordinator()
+    @StateObject private var voiceVM: VoiceConversationViewModel
+    
     @State private var currentIndex: Int = 0
     @State private var isVoiceSheetPresented: Bool = false
-
+  
+    init(viewModel: HomeViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        
+        let useCase = SendLLMMessageUseCase(
+            repository: MockLLMConversationRepositoryImpl()
+        )
+        _voiceVM = StateObject(wrappedValue: VoiceConversationViewModel(sendLLMMessageUseCase: useCase))
+    }
+    
     var body: some View {
-        ZStack(alignment: .top) {
-            // 1. 배경 그라데이션
-            LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color(UIColor.systemGray6)]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            VStack {
-                ScrollView {
-                    VStack(spacing: 16) {
-                        TopBar()
-                            .padding(.top, 20)
-                            .padding(.horizontal)
-                        
-                        PromotionBannerView()
-                        
-                        TabView(selection: $currentIndex) {
-                            ForEach(Array(viewModel.accounts.enumerated()), id: \.1.id) { index, account in
-                                AccountCardView(account: account)
-                                    .frame(width: UIScreen.main.bounds.width - 40)
-                                    .tag(index)
+        NavigationStack(path: $coordinator.path) { 
+            ZStack(alignment: .top) {
+                // 1. 배경 그라데이션
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.white, Color(UIColor.systemGray6)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+                
+                VStack {
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            TopBar()
+                                .padding(.top, 20)
+                                .padding(.horizontal)
+                            
+                            PromotionBannerView()
+                            
+                            TabView(selection: $currentIndex) {
+                                ForEach(Array(viewModel.accounts.enumerated()), id: \.1.id) { index, account in
+                                    AccountCardView(account: account)
+                                        .frame(width: UIScreen.main.bounds.width - 40)
+                                        .tag(index)
+                                }
                             }
+                            .tabViewStyle(.page)
+                            .indexViewStyle(.page(backgroundDisplayMode: .never))
+                            .frame(height: 250)
+                            
+                            AccountIndicator(currentIndex: $currentIndex, viewModel: viewModel)
+                                .padding(.horizontal)
+                            
+                            LinkAlertView
+                                .padding(.horizontal)
+                            
+                            SpendingCardView
+                                .padding(.horizontal)
+                            
+                            Spacer()
                         }
-                        .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .never))
-                        .frame(height: 250)
-                        
-                        AccountIndicator(currentIndex: $currentIndex, viewModel: viewModel)
-                            .padding(.horizontal)
-                        
-                        LinkAlertView
-                            .padding(.horizontal)
-                        
-                        SpendingCardView
-                            .padding(.horizontal)
-                        
-                        Spacer()
                     }
+                    BottomTabView()
                 }
-                BottomTabView()
-            }
-
-            VStack {
-                Spacer()
-                HStack {
+                
+                VStack {
                     Spacer()
-                    Button(action: {
-                        isVoiceSheetPresented = true
-                    }) {
-                        Image(systemName: "mic.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.yellow)
-                            .clipShape(Circle())
-                            .shadow(radius: 4)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            isVoiceSheetPresented = true
+                        }) {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.yellow)
+                                .clipShape(Circle())
+                                .shadow(radius: 4)
+                        }
+                        .padding(.bottom, 80)
+                        .padding(.trailing, 24)
                     }
-                    .padding(.bottom, 80)
-                    .padding(.trailing, 24)
                 }
             }
+            .navigationDestination(for: AppRoute.self) { route in
+                switch route {
+                case .limit:
+                    TransferLimitView()
+                        .navigationBarBackButtonHidden(true)
+                }
+            }
+            .sheet(isPresented: $isVoiceSheetPresented) {
+                VoiceConversationView(viewModel: voiceVM)
+                    .onAppear {
+                        voiceVM.onRoute = { appRoute in
+                            // appRoute: AppRoute?  → nil 이면 이동 안 함
+                            guard let appRoute else { return }
+                            
+                            // 1) 시트 닫기
+                            isVoiceSheetPresented = false
+                            
+                            // 2) 닫힘 애니메이션 직후 push (경합 방지 살짝 딜레이)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                coordinator.navigate(to: appRoute)                            }
+                        }
+                    }
+            }
         }
-        .sheet(isPresented: $isVoiceSheetPresented) {
-            VoiceConversationView(viewModel: VoiceConversationViewModel(
-                sendLLMMessageUseCase: SendLLMMessageUseCase(repository: MockLLMConversationRepositoryImpl())
-            ))
-        }
+        .environmentObject(coordinator)
     }
 }
 
@@ -143,7 +176,7 @@ private struct AccountIndicator: View {
     var body: some View {
         HStack {
             Image(systemName: "chevron.left")
-              
+            
             Text("\(currentIndex + 1) / \(viewModel.accounts.count)")
                 .font(.subheadline)
             

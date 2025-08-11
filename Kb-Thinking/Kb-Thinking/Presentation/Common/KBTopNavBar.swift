@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct KBTopNavBar: View {
+    
+    @EnvironmentObject var coordinator: AppCoordinator
     var title: String
-    var onBack: (() -> Void)?
+    
     var body: some View {
         HStack(spacing: 12) {
-            Button(action: { onBack?() }) {
+            Button(action: { coordinator.pop() }) {
                 Image(systemName: "chevron.left")
                     .font(.title3.weight(.semibold))
                     .foregroundStyle(Color.black)

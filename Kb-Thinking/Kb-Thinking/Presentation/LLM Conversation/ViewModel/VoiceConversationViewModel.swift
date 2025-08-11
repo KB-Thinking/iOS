@@ -15,7 +15,9 @@ final class VoiceConversationViewModel: ObservableObject {
     // MARK: - Published Properties
     
     @Published var transcribedText: String = ""
+    @Published var llmResponse = ""
     @Published var voiceState: VoiceState = .idle
+    var onRoute: ((AppRoute?) -> Void)?
     
     // MARK: - Dependencies
     
@@ -77,13 +79,40 @@ final class VoiceConversationViewModel: ObservableObject {
         recognizer.stopRecording()
         voiceState = .aiSpeaking
         
-        // 목업 응답 사용
-        let mock = LLMMessageEntity.mockList.randomElement()
-        let reply = mock?.responseText ?? "죄송해요, 응답을 가져오지 못했어요."
+        // 4번째 목업 고정
+        let mock = LLMMessageEntity.mockList[3]
         
-        transcribedText = reply
-        synthesizer.speak(text: reply)
+        transcribedText = mock.responseText
+        synthesizer.speak(text: mock.responseText)
+        
+        // route가 있으면 화면 이동 콜백 실행
+        if let domainRoute = mock.route,
+           let appRoute = RouteAdapter.map(domainRoute) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                self.onRoute?(appRoute)
+            }
+        }
         
         voiceState = .idle
+    }
+}
+
+// MARK: - 라우터 관련
+extension VoiceConversationViewModel {
+    func send(_ text: String) {
+        Task {
+            do {
+                let entity = try await sendLLMMessageUseCase.execute(requestText: text)
+                await MainActor.run {
+                    self.llmResponse = entity.responseText
+                    if let domainRoute = entity.route,
+                       let appRoute = RouteAdapter.map(domainRoute) {
+                        self.onRoute?(appRoute)
+                    }
+                }
+            } catch {
+                // 에러 처리 (토스트/알럿 등)
+            }
+        }
     }
 }
