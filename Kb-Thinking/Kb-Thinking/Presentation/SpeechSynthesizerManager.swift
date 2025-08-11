@@ -7,46 +7,93 @@
 
 import Foundation
 import AVFoundation
+import Combine
 
-class SpeechSynthesizerManager {
+final class SpeechSynthesizerManager: NSObject {
+
     private let synthesizer = AVSpeechSynthesizer()
+    @Published var isSpeaking: Bool = false
 
-    /// 음성 합성: 한국어 자연스러운 목소리로 읽기
-    func speak(text: String,
-               voiceIdentifier: String = "com.apple.ttsbundle.Yuna-compact",
-               rate: Float = 0.5,
-               pitch: Float = 1.0,
-               volume: Float = 1.0) {
+    override init() {
+        super.init()
+        synthesizer.delegate = self
+    }
 
-        guard !text.isEmpty else {
-            print("❗ 읽을 텍스트가 없습니다.")
-            return
-        }
+    func speak(text: String) {
+        guard !text.isEmpty else { return }
 
-        // 이미 말하고 있다면 중단 후 새로 시작
+        // 현재 말하고 있으면 즉시 중단
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
+            isSpeaking = false
         }
+
+        // 오디오 세션 활성화
+        activatePlaybackSession()
 
         let utterance = AVSpeechUtterance(string: text)
-
-        // 설정된 voice identifier 사용
-        if let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
+        
+        // 한국어 보이스 설정
+        if let voice = AVSpeechSynthesisVoice(language: "ko-KR") {
             utterance.voice = voice
-        } else {
-            print("❗ 해당 identifier로 음성을 찾을 수 없습니다. 기본 한국어로 재생합니다.")
-            utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
         }
 
-        // 속도, 음높이, 볼륨 설정
-        utterance.rate = rate           // 기본: 0.5 (0.1 ~ 1.0)
-        utterance.pitchMultiplier = pitch   // 기본: 1.0
-        utterance.volume = volume       // 기본: 1.0
+        // 한국어에 최적화된 설정
+        utterance.rate = 0.45
+        utterance.pitchMultiplier = 1.1
+        utterance.volume = 0.9
+        utterance.preUtteranceDelay = 0.1
+        utterance.postUtteranceDelay = 0.2
 
         synthesizer.speak(utterance)
+        isSpeaking = true
     }
 
     func stop() {
         synthesizer.stopSpeaking(at: .immediate)
+        isSpeaking = false
+        deactivateSession()
+    }
+
+    // MARK: - Private
+
+    private func activatePlaybackSession() {
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playback, mode: .default, options: [])
+            try session.setActive(true, options: [])
+        } catch {
+            print("🔊 오디오 세션 활성화 실패:", error.localizedDescription)
+        }
+    }
+
+    private func deactivateSession() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            do {
+                let session = AVAudioSession.sharedInstance()
+                if session.isOtherAudioPlaying {
+                    try session.setActive(false, options: [.notifyOthersOnDeactivation])
+                }
+            } catch {
+                print("🔇 오디오 세션 비활성화 실패:", error.localizedDescription)
+            }
+        }
+    }
+}
+
+// MARK: - AVSpeechSynthesizerDelegate
+extension SpeechSynthesizerManager: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        isSpeaking = false
+        deactivateSession()
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
+        isSpeaking = false
+        deactivateSession()
+    }
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        isSpeaking = true
     }
 }
