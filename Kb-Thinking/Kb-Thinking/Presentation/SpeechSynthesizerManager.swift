@@ -9,12 +9,25 @@ import Foundation
 import AVFoundation
 import Combine
 
+// OpenAI TTS 연동 옵션
+enum TTSEngineType {
+    case system
+    case openAI
+}
+
 final class SpeechSynthesizerManager: NSObject {
 
     private let synthesizer = AVSpeechSynthesizer()
     @Published var isSpeaking: Bool = false
 
-    override init() {
+    // OpenAI 옵션
+    private let ttsEngine: TTSEngineType
+    private let openAIService: OpenAITTSAPIServiceProtocol?
+    private let openAIPlayer = OpenAITTSPlayer()
+
+    init(ttsEngine: TTSEngineType = .system, openAIService: OpenAITTSAPIServiceProtocol? = nil) {
+        self.ttsEngine = ttsEngine
+        self.openAIService = openAIService
         super.init()
         synthesizer.delegate = self
     }
@@ -22,37 +35,54 @@ final class SpeechSynthesizerManager: NSObject {
     func speak(text: String) {
         guard !text.isEmpty else { return }
 
-        // 현재 말하고 있으면 즉시 중단
+        switch ttsEngine {
+        case .system:
+            speakWithSystem(text: text)
+        case .openAI:
+            Task { await speakWithOpenAI(text: text) }
+        }
+    }
+
+    private func speakWithSystem(text: String) {
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
             isSpeaking = false
         }
-
-        // 오디오 세션 활성화
         activatePlaybackSession()
-
         let utterance = AVSpeechUtterance(string: text)
-        
-        // 한국어 보이스 설정
         if let voice = AVSpeechSynthesisVoice(language: "ko-KR") {
             utterance.voice = voice
         }
-
-        // 한국어에 최적화된 설정
         utterance.rate = 0.45
         utterance.pitchMultiplier = 1.1
         utterance.volume = 0.9
         utterance.preUtteranceDelay = 0.1
         utterance.postUtteranceDelay = 0.2
-
         synthesizer.speak(utterance)
         isSpeaking = true
+    }
+
+    private func speakWithOpenAI(text: String) async {
+        guard let service = openAIService else {
+            // fallback
+            speakWithSystem(text: text)
+            return
+        }
+        do {
+            let data = try await service.synthesize(text: text, model: "gpt-4o-mini-tts", voice: "alloy", format: "mp3")
+            try openAIPlayer.play(data: data, fileTypeHint: .mp3)
+        } catch {
+            print("OpenAI TTS 실패: \(error.localizedDescription)")
+            // 실패 시 시스템 합성으로 폴백
+            speakWithSystem(text: text)
+        }
     }
 
     func stop() {
         synthesizer.stopSpeaking(at: .immediate)
         isSpeaking = false
         deactivateSession()
+        openAIPlayer.stop()
     }
 
     // MARK: - Private

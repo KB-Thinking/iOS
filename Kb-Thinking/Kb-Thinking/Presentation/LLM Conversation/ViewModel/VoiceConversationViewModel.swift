@@ -25,17 +25,43 @@ final class VoiceConversationViewModel: ObservableObject {
 
     // MARK: - Dependencies
     private let recognizer = SpeechRecognizerManager()
-    private let synthesizer = SpeechSynthesizerManager()
+    private let synthesizer: SpeechSynthesizerManager
     private let sendLLMMessageUseCase: SendLLMMessageUseCase
 
     // MARK: - State
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Lifecycle
-    init(sendLLMMessageUseCase: SendLLMMessageUseCase) {
+    init(
+        sendLLMMessageUseCase: SendLLMMessageUseCase,
+        synthesizer: SpeechSynthesizerManager? = nil,
+        isPreview: Bool = false
+    ) {
         self.sendLLMMessageUseCase = sendLLMMessageUseCase
+        self.synthesizer = synthesizer ?? VoiceConversationViewModel.makeDefaultSynthesizer()
         setupBindings()
-        requestPermissions()
+        
+        if !isPreview {
+            requestPermissions()
+        } else {
+            isAuthorized = true
+        }
+    }
+
+    // MARK: - Factory
+    private static func makeDefaultSynthesizer() -> SpeechSynthesizerManager {
+        // 1) 런타임 환경변수 (시뮬레이터/개발용)
+        if let key = ProcessInfo.processInfo.environment["OPENAI_API_KEY"], !key.isEmpty {
+            let service = OpenAITTSAPIService(apiKey: key)
+            return SpeechSynthesizerManager(ttsEngine: .openAI, openAIService: service)
+        }
+        // 2) Info.plist (배포/디바이스용)
+        if let key = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String, !key.isEmpty {
+            let service = OpenAITTSAPIService(apiKey: key)
+            return SpeechSynthesizerManager(ttsEngine: .openAI, openAIService: service)
+        }
+        // 3) 기본: 시스템 TTS
+        return SpeechSynthesizerManager(ttsEngine: .system)
     }
 
     // MARK: - Setup
