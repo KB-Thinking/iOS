@@ -14,7 +14,8 @@ struct HomeView: View {
     
     @State private var currentIndex: Int = 0
     @State private var isVoiceSheetPresented: Bool = false
-  
+    @State private var showNVAlert: Bool = false
+    
     init(viewModel: HomeViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
         
@@ -99,8 +100,13 @@ struct HomeView: View {
                     FundDetailView()
                         .navigationBarBackButtonHidden(true)
                 case .alert:
-                    Text("다른 액션 필요")
+                    EmptyView()
                 }
+            }
+            .alert("알림 설정", isPresented: $showNVAlert) {
+                Button("확인", role: .cancel) { }
+            } message: {
+                Text("NVIDIA 주식에 대한 알림 설정이 완료되었습니다.")
             }
             .sheet(isPresented: $isVoiceSheetPresented) {
                 VoiceConversationView(viewModel: voiceVM)
@@ -108,10 +114,17 @@ struct HomeView: View {
                         voiceVM.onRoute = { appRoute in
                             guard let appRoute else { return }
                             isVoiceSheetPresented = false
-                            
-                            // 닫힘 애니메이션 직후 push (경합 방지 살짝 딜레이)
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                coordinator.navigate(to: appRoute)                            }
+
+                            switch appRoute {
+                            case .alert:
+                                showNVAlert = true
+                                return
+                            default:
+                                // 기존 화면 전환만 처리
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                    coordinator.navigate(to: appRoute)
+                                }
+                            }
                         }
                     }
             }

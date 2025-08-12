@@ -53,7 +53,7 @@ final class SpeechSynthesizerManager: NSObject {
         if let voice = AVSpeechSynthesisVoice(language: "ko-KR") {
             utterance.voice = voice
         }
-        utterance.rate = 0.45
+        utterance.rate = 0.6
         utterance.pitchMultiplier = 1.1
         utterance.volume = 0.9
         utterance.preUtteranceDelay = 0.1

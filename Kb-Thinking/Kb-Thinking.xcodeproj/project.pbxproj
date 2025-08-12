@@ -41,9 +41,9 @@
 		04E4A12C2E49B58000400559 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A12B2E49B58000400559 /* Route.swift */; };
 		04E4A1622E4A3A5600400559 /* OpenAITTSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A1612E4A3A5600400559 /* OpenAITTSPlayer.swift */; };
 		04E4A1642E4A3AC000400559 /* OpenAITTSAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A1632E4A3AC000400559 /* OpenAITTSAPIService.swift */; };
+		04E4A17A2E4B350B00400559 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A1772E4B350B00400559 /* SpeechRecognizerManager.swift */; };
+		04E4A17B2E4B350B00400559 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4A1782E4B350B00400559 /* SpeechSynthesizerManager.swift */; };
 		04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */; };
-		04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */; };
-		04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */; };
 		04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F40D372E437D5200DBB309 /* VoiceConversationView.swift */; };
 		04F40D3E2E437D7500DBB309 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F40D3B2E437D7500DBB309 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -102,12 +102,12 @@
 		04E4A1442E49E29A00400559 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		04E4A1612E4A3A5600400559 /* OpenAITTSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAITTSPlayer.swift; sourceTree = "<group>"; };
 		04E4A1632E4A3AC000400559 /* OpenAITTSAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAITTSAPIService.swift; sourceTree = "<group>"; };
+		04E4A1772E4B350B00400559 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
+		04E4A1782E4B350B00400559 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
 		04F40CE72E42557100DBB309 /* Kb-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kb-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CF52E42557200DBB309 /* Kb-ThinkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40CFF2E42557300DBB309 /* Kb-ThinkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Kb-ThinkingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F40D1B2E42566B00DBB309 /* Kb_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kb_ThinkingApp.swift; sourceTree = "<group>"; };
-		04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
-		04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
 		04F40D372E437D5200DBB309 /* VoiceConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceConversationView.swift; sourceTree = "<group>"; };
 		04F40D3B2E437D7500DBB309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F40D3C2E437D7500DBB309 /* Kb_Thinking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kb_Thinking.entitlements; sourceTree = "<group>"; };
@@ -433,6 +433,16 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		04E4A1792E4B350B00400559 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				04E4A1612E4A3A5600400559 /* OpenAITTSPlayer.swift */,
+				04E4A1772E4B350B00400559 /* SpeechRecognizerManager.swift */,
+				04E4A1782E4B350B00400559 /* SpeechSynthesizerManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		04F40CDE2E42557100DBB309 = {
 			isa = PBXGroup;
 			children = (
@@ -476,15 +486,12 @@
 		04F40D172E42566B00DBB309 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				04E4A1612E4A3A5600400559 /* OpenAITTSPlayer.swift */,
 				04E4A1292E49B53600400559 /* Navigation */,
 				04E4A10D2E47652400400559 /* Common */,
 				04E4A1102E476EDC00400559 /* FundDetailView */,
 				04E4A0A82E4763EF00400559 /* TransferLimit */,
 				04E49EFB2E45C37A00400559 /* LLM Conversation */,
 				04F40D472E437FBF00DBB309 /* Home */,
-				04F40D202E42568700DBB309 /* SpeechRecognizerManager.swift */,
-				04F40D222E4258AE00DBB309 /* SpeechSynthesizerManager.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -526,6 +533,7 @@
 		04F40D472E437FBF00DBB309 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				04E4A1792E4B350B00400559 /* Manager */,
 				04E49EC02E44883700400559 /* ViewModel */,
 				04E49EBA2E44881A00400559 /* View */,
 			);
@@ -676,11 +684,9 @@
 			files = (
 				04E4A11E2E49B4FB00400559 /* AppCoordinator.swift in Sources */,
 				04E49F6B2E45D84500400559 /* LLMConversationRequestDTO.swift in Sources */,
-				04F40D232E4258AE00DBB309 /* SpeechSynthesizerManager.swift in Sources */,
 				04E49F812E45DC0200400559 /* LLMConversationRepositoryImpl.swift in Sources */,
 				04E49F6F2E45D94500400559 /* LLMConversationResponseDTO.swift in Sources */,
 				04E4A1242E49B50C00400559 /* RouteAdapter.swift in Sources */,
-				04F40D212E42568700DBB309 /* SpeechRecognizerManager.swift in Sources */,
 				04E49EBB2E44881A00400559 /* AccountCardView.swift in Sources */,
 				04E49EE32E448FE000400559 /* HomeMocks.swift in Sources */,
 				04E4A12C2E49B58000400559 /* Route.swift in Sources */,
@@ -696,6 +702,8 @@
 				04F40D392E437D5200DBB309 /* VoiceConversationView.swift in Sources */,
 				04E4A1642E4A3AC000400559 /* OpenAITTSAPIService.swift in Sources */,
 				04F40D1E2E42566B00DBB309 /* Kb_ThinkingApp.swift in Sources */,
+				04E4A17A2E4B350B00400559 /* SpeechRecognizerManager.swift in Sources */,
+				04E4A17B2E4B350B00400559 /* SpeechSynthesizerManager.swift in Sources */,
 				04E4A12A2E49B53600400559 /* AppRoute.swift in Sources */,
 				04E49ED32E4489C400400559 /* AccountEntity.swift in Sources */,
 				04E49ED92E448CC800400559 /* AccountRepositoryImpl.swift in Sources */,
