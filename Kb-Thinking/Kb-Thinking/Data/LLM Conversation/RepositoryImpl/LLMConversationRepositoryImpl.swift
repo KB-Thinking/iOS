@@ -16,6 +16,7 @@ final class LLMConversationRepositoryImpl: LLMConversationRepository {
 
     func sendMessage(requestText: String) async throws -> LLMMessageEntity {
         let responseDTO = try await apiService.sendMessage(requestText: requestText)
+        print("서버 응답 \(responseDTO)")
         return responseDTO.toEntity(requestText: requestText)
     }
 }

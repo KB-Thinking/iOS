@@ -9,79 +9,127 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
+    @StateObject private var coordinator = AppCoordinator()
+    @StateObject private var voiceVM: VoiceConversationViewModel
+    
     @State private var currentIndex: Int = 0
     @State private var isVoiceSheetPresented: Bool = false
-
+    @State private var showNVAlert: Bool = false
+    
+    init(viewModel: HomeViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        
+        let useCase = SendLLMMessageUseCase(
+            repository: LLMConversationRepositoryImpl()
+        )
+        _voiceVM = StateObject(wrappedValue: VoiceConversationViewModel(sendLLMMessageUseCase: useCase))
+    }
+    
     var body: some View {
-        ZStack(alignment: .top) {
-            // 1. 배경 그라데이션
-            LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color(UIColor.systemGray6)]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            VStack {
-                ScrollView {
-                    VStack(spacing: 16) {
-                        TopBar()
-                            .padding(.top, 20)
-                            .padding(.horizontal)
-                        
-                        PromotionBannerView()
-                        
-                        TabView(selection: $currentIndex) {
-                            ForEach(Array(viewModel.accounts.enumerated()), id: \.1.id) { index, account in
-                                AccountCardView(account: account)
-                                    .frame(width: UIScreen.main.bounds.width - 40)
-                                    .tag(index)
+        NavigationStack(path: $coordinator.path) { 
+            ZStack(alignment: .top) {
+                // 1. 배경 그라데이션
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.white, Color(UIColor.systemGray6)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+                
+                VStack {
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            TopBar()
+                                .padding(.top, 20)
+                                .padding(.horizontal)
+                            
+                            PromotionBannerView()
+                            
+                            TabView(selection: $currentIndex) {
+                                ForEach(Array(viewModel.accounts.enumerated()), id: \.1.id) { index, account in
+                                    AccountCardView(account: account)
+                                        .frame(width: UIScreen.main.bounds.width - 40)
+                                        .tag(index)
+                                }
+                            }
+                            .tabViewStyle(.page)
+                            .indexViewStyle(.page(backgroundDisplayMode: .never))
+                            .frame(height: 250)
+                            
+                            AccountIndicator(currentIndex: $currentIndex, viewModel: viewModel)
+                                .padding(.horizontal)
+                            
+                            LinkAlertView
+                                .padding(.horizontal)
+                            
+                            SpendingCardView
+                                .padding(.horizontal)
+                            
+                            Spacer()
+                        }
+                    }
+                    BottomTabView()
+                }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            isVoiceSheetPresented = true
+                        }) {
+                            Image(systemName: "mic.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.yellow)
+                                .clipShape(Circle())
+                                .shadow(radius: 4)
+                        }
+                        .padding(.bottom, 80)
+                        .padding(.trailing, 24)
+                    }
+                }
+            }
+            .navigationDestination(for: AppRoute.self) { route in
+                switch route {
+                case .limit:
+                    TransferLimitView()
+                        .navigationBarBackButtonHidden(true)
+                case .fund:
+                    FundDetailView()
+                        .navigationBarBackButtonHidden(true)
+                case .alert:
+                    EmptyView()
+                }
+            }
+            .alert("알림 설정", isPresented: $showNVAlert) {
+                Button("확인", role: .cancel) { }
+            } message: {
+                Text("NVIDIA 주식에 대한 알림 설정이 완료되었습니다.")
+            }
+            .sheet(isPresented: $isVoiceSheetPresented) {
+                VoiceConversationView(viewModel: voiceVM)
+                    .onAppear {
+                        voiceVM.onRoute = { appRoute in
+                            guard let appRoute else { return }
+                            isVoiceSheetPresented = false
+
+                            switch appRoute {
+                            case .alert:
+                                showNVAlert = true
+                                return
+                            default:
+                                // 기존 화면 전환만 처리
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                    coordinator.navigate(to: appRoute)
+                                }
                             }
                         }
-                        .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .never))
-                        .frame(height: 250)
-                        
-                        AccountIndicator(currentIndex: $currentIndex, viewModel: viewModel)
-                            .padding(.horizontal)
-                        
-                        LinkAlertView
-                            .padding(.horizontal)
-                        
-                        SpendingCardView
-                            .padding(.horizontal)
-                        
-                        Spacer()
                     }
-                }
-                BottomTabView()
-            }
-
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        isVoiceSheetPresented = true
-                    }) {
-                        Image(systemName: "mic.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.yellow)
-                            .clipShape(Circle())
-                            .shadow(radius: 4)
-                    }
-                    .padding(.bottom, 80)
-                    .padding(.trailing, 24)
-                }
             }
         }
-        .sheet(isPresented: $isVoiceSheetPresented) {
-            VoiceConversationView(viewModel: VoiceConversationViewModel(
-                sendLLMMessageUseCase: SendLLMMessageUseCase(repository: MockLLMConversationRepositoryImpl())
-            ))
-        }
+        .environmentObject(coordinator)
     }
 }
 
@@ -143,7 +191,7 @@ private struct AccountIndicator: View {
     var body: some View {
         HStack {
             Image(systemName: "chevron.left")
-              
+            
             Text("\(currentIndex + 1) / \(viewModel.accounts.count)")
                 .font(.subheadline)
             
