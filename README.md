@@ -7,11 +7,22 @@
     - **최소 기능(MVP)** 기준: 음성 인식 → 서버/LLM 질의 → 화면 라우팅 + 음성 안내
 <img width="612" height="385" alt="image" src="https://github.com/user-attachments/assets/6d629767-4200-4218-986d-5726c2110ce3" />
 
-<div align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/46eVnQ4n63I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/AWHuXak0vCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/JY2yZ_piKDY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+## 시연영상
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=46eVnQ4n63I" target="_blank">
+    <img src="https://img.youtube.com/vi/46eVnQ4n63I/hqdefault.jpg" alt="Demo 1" width="320">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.youtube.com/watch?v=AWHuXak0vCY" target="_blank">
+    <img src="https://img.youtube.com/vi/AWHuXak0vCY/hqdefault.jpg" alt="Demo 2" width="320">
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.youtube.com/watch?v=JY2yZ_piKDY" target="_blank">
+    <img src="https://img.youtube.com/vi/JY2yZ_piKDY/hqdefault.jpg" alt="Demo 3" width="320">
+  </a>
+</p>
+
 
 ---
 
