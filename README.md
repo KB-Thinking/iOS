@@ -5,6 +5,13 @@
 - **핵심 목표**:
     - 낯선 금융 용어·메뉴를 **대화형 인터페이스**로 쉽게 탐색
     - **최소 기능(MVP)** 기준: 음성 인식 → 서버/LLM 질의 → 화면 라우팅 + 음성 안내
+<img width="612" height="385" alt="image" src="https://github.com/user-attachments/assets/6d629767-4200-4218-986d-5726c2110ce3" />
+
+<div align="center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/46eVnQ4n63I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/AWHuXak0vCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/JY2yZ_piKDY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 ---
 
@@ -98,7 +105,7 @@
 | --- | --- | --- |
 | UI | **SwiftUI** | 선언형 UI, 상태 기반 렌더링 |
 | 오디오 | **AVFoundation** | 음성 합성(시스템 TTS), 오디오 세션 |
-| 음성 인식 | **Speech Framework** | STT(한국어 지원) |
+| 음성 인식 | **OpenAI TTS** | STT(한국어 지원) |
 | 네트워크 | **URLSession** 기반 커스텀 `APIService` | REST 통신, DTO 인코딩/디코딩 |
 | 구조 | **Clean Architecture, MVVM, Coordinator** | 테스트/확장성 확보 |
 | 설정 | **xcconfig** | API 키/엔드포인트 분리 |
